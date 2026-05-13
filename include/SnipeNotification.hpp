@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
-#include "UnityEngine/GameObject.hpp"
-#include "TMPro/TextMeshProUGUI.hpp"
+
+namespace UnityEngine { class GameObject; }
+namespace TMPro { class TextMeshProUGUI; }
 
 namespace FriendLeaderboard {
 
