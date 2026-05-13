@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.schema.json",
   "sharedDir": "shared",
   "dependenciesDir": "extern",
   "version": "0.1.0",
