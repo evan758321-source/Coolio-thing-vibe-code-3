@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "UnityEngine/MonoBehaviour.hpp"
 #include "UnityEngine/GameObject.hpp"
 #include "TMPro/TextMeshProUGUI.hpp"
 
