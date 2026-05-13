@@ -1,15 +1,14 @@
 {
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.schema.json",
   "sharedDir": "shared",
   "dependenciesDir": "extern",
-  "version": "0.1.0",
   "info": {
     "name": "FriendLeaderboard",
     "id": "FriendLeaderboard",
     "version": "0.1.0",
-    "url": "https://github.com/evan758321-source/Coolio-thing-vibe-code-3",
+    "url": null,
     "additionalData": {
-      "overrideSoName": "libFriendLeaderboard.so",
-      "cmake": true
+      "overrideSoName": "libFriendLeaderboard.so"
     }
   },
   "workspace": {
@@ -34,14 +33,7 @@
     },
     {
       "id": "custom-types",
-      "versionRange": "^0.18.4",
-      "additionalData": {
-        "includeQmod": true
-      }
-    },
-    {
-      "id": "bsml",
-      "versionRange": "^0.4.55",
+      "versionRange": "^0.18.3",
       "additionalData": {}
     },
     {
@@ -53,8 +45,14 @@
       "id": "scotland2",
       "versionRange": "^0.1.6",
       "additionalData": {
-        "includeQmod": false
+        "includeQmod": false,
+        "private": true
       }
+    },
+    {
+      "id": "bsml",
+      "versionRange": "^0.4.55",
+      "additionalData": {}
     },
     {
       "id": "web-utils",
