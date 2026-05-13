@@ -25,7 +25,7 @@ target_include_directories(${COMPILE_ID} PRIVATE
 
 target_link_libraries(${COMPILE_ID}
     log
-    ${EXTERN_LIB_DIR}/libbeatsaber-hook_3_12_1.so
+    ${EXTERN_LIB_DIR}/libbeatsaber-hook.so
     ${EXTERN_LIB_DIR}/libquestui.so
     ${EXTERN_LIB_DIR}/libbs-utils.so
 )
