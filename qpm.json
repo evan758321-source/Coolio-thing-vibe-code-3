@@ -53,11 +53,6 @@
       "id": "bsml",
       "versionRange": "^0.4.55",
       "additionalData": {}
-    },
-    {
-      "id": "fmt",
-      "versionRange": "^10.2.1",
-      "additionalData": {}
     }
   ]
 }
