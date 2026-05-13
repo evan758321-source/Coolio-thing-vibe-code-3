@@ -1,0 +1,26 @@
+{
+  "_QPM_BuildsWithNDK": true,
+  "name": "FriendLeaderboard",
+  "id": "FriendLeaderboard",
+  "author": "YourName",
+  "description": "Shows your BeatLeader friends' scores on the right side of your screen while playing. Snipe your friends and get notified!",
+  "version": "0.1.0",
+  "packageVersion": "1.28.0",
+  "modFiles": ["libFriendLeaderboard.so"],
+  "libraryFiles": [],
+  "dependencies": [
+    {
+      "id": "questui",
+      "versionRange": ">=2.0.0"
+    },
+    {
+      "id": "beatsaber-hook",
+      "versionRange": ">=3.12.1"
+    },
+    {
+      "id": "bs-utils",
+      "versionRange": ">=1.8.0"
+    }
+  ],
+  "optional": []
+}

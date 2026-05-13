@@ -1,0 +1,129 @@
+name: Build and Release QMOD
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+env:
+  MOD_ID: FriendLeaderboard
+  NDK_VERSION: r26d
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ----------------------------------------------------------------
+      # 1. Checkout
+      # ----------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # ----------------------------------------------------------------
+      # 2. Set up Java (for Android NDK toolchain)
+      # ----------------------------------------------------------------
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # ----------------------------------------------------------------
+      # 3. Install Android NDK
+      # ----------------------------------------------------------------
+      - name: Setup Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: true
+
+      # ----------------------------------------------------------------
+      # 4. Install QPM (Quest Package Manager)
+      # ----------------------------------------------------------------
+      - name: Install QPM
+        uses: Fernthedev/qpm-action@v1
+        with:
+          workflow_token: ${{ secrets.GITHUB_TOKEN }}
+          restore: true
+          publish: false
+          version: latest
+          publish_token: ""
+
+      # ----------------------------------------------------------------
+      # 5. QPM restore dependencies
+      # ----------------------------------------------------------------
+      - name: QPM Restore
+        run: |
+          qpm restore
+
+      # ----------------------------------------------------------------
+      # 6. Configure CMake
+      # ----------------------------------------------------------------
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-26 \
+            -DCMAKE_TOOLCHAIN_FILE=${{ steps.setup-ndk.outputs.ndk-path }}/build/cmake/android.toolchain.cmake \
+            -DEXTERN_INC_DIR="${{ github.workspace }}/extern/includes" \
+            -DEXTERN_LIB_DIR="${{ github.workspace }}/extern/libs" \
+            -G Ninja
+
+      # ----------------------------------------------------------------
+      # 7. Build .so
+      # ----------------------------------------------------------------
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      # ----------------------------------------------------------------
+      # 8. Package into .qmod
+      # ----------------------------------------------------------------
+      - name: Package QMOD
+        run: |
+          mkdir -p qmod_package/libs/arm64-v8a
+
+          # Copy the compiled .so
+          cp build/lib${{ env.MOD_ID }}.so \
+             qmod_package/libs/arm64-v8a/lib${{ env.MOD_ID }}.so
+
+          # Copy mod.json
+          cp mod.json qmod_package/mod.json
+
+          # Zip into .qmod (it's just a renamed zip)
+          cd qmod_package
+          zip -r ../${{ env.MOD_ID }}.qmod . -x "*.DS_Store"
+          cd ..
+
+          echo "QMOD built: ${{ env.MOD_ID }}.qmod"
+          ls -lh ${{ env.MOD_ID }}.qmod
+
+      # ----------------------------------------------------------------
+      # 9. Upload artifact (always)
+      # ----------------------------------------------------------------
+      - name: Upload QMOD artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.MOD_ID }}-${{ github.sha }}
+          path: ${{ env.MOD_ID }}.qmod
+          retention-days: 30
+
+      # ----------------------------------------------------------------
+      # 10. Create GitHub Release on tags
+      # ----------------------------------------------------------------
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.MOD_ID }}.qmod
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

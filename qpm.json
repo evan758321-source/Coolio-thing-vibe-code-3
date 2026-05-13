@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "FriendLeaderboard",
+    "id": "FriendLeaderboard",
+    "version": "0.1.0",
+    "url": null,
+    "additionalData": {
+      "modFiles": ["libFriendLeaderboard.so"],
+      "overridesSoName": "libFriendLeaderboard",
+      "compileOptions": {
+        "includePaths": ["include", "src"],
+        "cppFeatures": ["gnu++20"],
+        "cppFlags": ["-frtti", "-fexceptions"],
+        "cFlags": []
+      }
+    }
+  },
+  "dependencies": [
+    {
+      "id": "questui",
+      "versionRange": ">=2.0.0",
+      "additionalData": {}
+    },
+    {
+      "id": "beatsaber-hook",
+      "versionRange": ">=3.12.1",
+      "additionalData": {}
+    },
+    {
+      "id": "bs-utils",
+      "versionRange": ">=1.8.0",
+      "additionalData": {}
+    }
+  ],
+  "sharedDir": "shared",
+  "dependenciesDir": "extern"
+}
