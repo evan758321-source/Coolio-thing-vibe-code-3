@@ -6,7 +6,7 @@
     "name": "FriendLeaderboard",
     "id": "FriendLeaderboard",
     "version": "0.1.0",
-    "url": null,
+    "url": "",
     "additionalData": {
       "overrideSoName": "libFriendLeaderboard.so"
     }
