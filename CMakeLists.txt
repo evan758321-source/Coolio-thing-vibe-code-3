@@ -21,6 +21,9 @@ add_library(${COMPILE_ID} SHARED
 target_include_directories(${COMPILE_ID} PRIVATE
     include
     ${EXTERN_INC_DIR}
+    ${EXTERN_INC_DIR}/bs-cordl
+    ${EXTERN_INC_DIR}/fmt
+    ${EXTERN_INC_DIR}/fmt/include
 )
 
 target_link_libraries(${COMPILE_ID}
