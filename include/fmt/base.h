@@ -7,6 +7,23 @@
 namespace fmt {
 using string_view = std::string_view;
 
+template <typename Char>
+using basic_string_view = std::basic_string_view<Char>;
+
+template <typename Char>
+class runtime_format_string {
+ public:
+  constexpr runtime_format_string(const Char*) {}
+  constexpr runtime_format_string(std::basic_string_view<Char>) {}
+};
+
+struct format_args {};
+
+inline std::string vformat(string_view, format_args) { return {}; }
+
+template <typename... Args>
+inline format_args make_format_args(Args&&...) { return {}; }
+
 template <typename Char, typename... Args>
 class basic_format_string {
  public:
