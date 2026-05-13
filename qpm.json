@@ -1,34 +1,40 @@
 {
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.CLI/main/QPM/qpm.schema.json",
   "info": {
     "name": "FriendLeaderboard",
     "id": "FriendLeaderboard",
     "version": "0.1.0",
     "url": null,
     "additionalData": {
-      "modFiles": ["libFriendLeaderboard.so"],
-      "overridesSoName": "libFriendLeaderboard",
-      "compileOptions": {
-        "includePaths": ["include", "src"],
-        "cppFeatures": ["gnu++20"],
-        "cppFlags": ["-frtti", "-fexceptions"],
-        "cFlags": []
-      }
+      "modFiles": [
+        "libFriendLeaderboard.so"
+      ]
     }
   },
   "dependencies": [
     {
-      "id": "questui",
-      "versionRange": ">=2.0.0",
+      "id": "beatsaber-hook",
+      "versionRange": "^3.12.1",
       "additionalData": {}
     },
     {
-      "id": "beatsaber-hook",
-      "versionRange": ">=3.12.1",
+      "id": "questui",
+      "versionRange": "^2.0.0",
       "additionalData": {}
     },
     {
       "id": "bs-utils",
-      "versionRange": ">=1.8.0",
+      "versionRange": "^1.8.0",
+      "additionalData": {}
+    },
+    {
+      "id": "config-utils",
+      "versionRange": "^1.1.0",
+      "additionalData": {}
+    },
+    {
+      "id": "custom-types",
+      "versionRange": "^1.8.0",
       "additionalData": {}
     }
   ],
