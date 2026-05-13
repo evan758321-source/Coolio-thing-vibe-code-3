@@ -32,11 +32,6 @@
       "additionalData": {}
     },
     {
-      "id": "bs-utils",
-      "versionRange": ">=1.7.0",
-      "additionalData": {}
-    },
-    {
       "id": "custom-types",
       "versionRange": "^0.18.3",
       "additionalData": {}

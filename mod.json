@@ -18,10 +18,6 @@
     {
       "id": "beatsaber-hook",
       "versionRange": ">=3.12.1"
-    },
-    {
-      "id": "bs-utils",
-      "versionRange": ">=1.7.0"
     }
   ],
   "optional": []
