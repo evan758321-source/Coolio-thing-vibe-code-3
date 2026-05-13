@@ -21,13 +21,15 @@ add_library(${COMPILE_ID} SHARED
 target_include_directories(${COMPILE_ID} PRIVATE
     include
     ${EXTERN_INC_DIR}
+    ${EXTERN_INC_DIR}/bs-cordl
+    ${EXTERN_INC_DIR}/fmt
+    ${EXTERN_INC_DIR}/fmt/include
 )
 
 target_link_libraries(${COMPILE_ID}
     log
-    ${EXTERN_LIB_DIR}/libbeatsaber-hook_3_12_1.so
-    ${EXTERN_LIB_DIR}/libquestui.so
-    ${EXTERN_LIB_DIR}/libbs-utils.so
+    ${EXTERN_LIB_DIR}/libbeatsaber-hook.so
+    ${EXTERN_LIB_DIR}/libbsml.so
 )
 
 target_compile_options(${COMPILE_ID} PRIVATE

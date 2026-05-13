@@ -54,7 +54,6 @@ jobs:
           workflow_token: ${{ secrets.GITHUB_TOKEN }}
           restore: true
           publish: false
-          version: latest
           publish_token: ""
 
       # ----------------------------------------------------------------

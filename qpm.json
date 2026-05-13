@@ -55,8 +55,8 @@
       "additionalData": {}
     },
     {
-      "id": "web-utils",
-      "versionRange": "^1.1.2",
+      "id": "fmt",
+      "versionRange": "^10.2.1",
       "additionalData": {}
     }
   ]
